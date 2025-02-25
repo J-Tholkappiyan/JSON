@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { width: 50%; margin: auto; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid black; }
+    </style>
+</head>
+<body>
+    <h2>Stock Market Prices</h2>
+    <table>
+        <thead>
+            <tr><th>Company</th><th>Price</th></tr>
+        </thead>
+        <tbody id="stockData"></tbody>
+    </table>
+
+    <script>
+        let stockPrices = [
+            { "company": "Apple", "price": "$150" },
+            { "company": "Google", "price": "$2800" },
+            { "company": "Tesla", "price": "$700" }
+        ];
+
+        function loadStockData() {
+            let table = document.getElementById("stockData");
+            table.innerHTML = "";
+            stockPrices.forEach(stock => {
+                let row = `<tr><td>${stock.company}</td><td>${stock.price}</td></tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        setInterval(() => {
+            stockPrices.forEach(stock => stock.price = `$${(Math.random() * 3000).toFixed(2)}`);
+            loadStockData();
+        }, 2000);
+    </script>
+</body>
+</html>

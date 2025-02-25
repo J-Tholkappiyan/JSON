@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+</head>
+<body>
+    <h2>Latest News</h2>
+    <div id="newsFeed"></div>
+
+    <script>
+        let newsData = [
+            { "title": "Tech Advances", "content": "New AI technology is emerging daily." },
+            { "title": "Stock Market Update", "content": "Markets see huge fluctuations this week." },
+            { "title": "Health Tips", "content": "5 Foods to keep your heart healthy." }
+        ];
+
+        let newsDiv = document.getElementById("newsFeed");
+        newsData.forEach(news => {
+            newsDiv.innerHTML += `<h3>${news.title}</h3><p>${news.content}</p>`;
+        });
+    </script>
+</body>
+</html>

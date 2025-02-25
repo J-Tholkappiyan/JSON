@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Shortlisting</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+    <h2 class="text-center">AI-Based Resume Shortlisting</h2>
+    
+    <label>Filter by Skill:</label>
+    <input type="text" id="skillFilter" class="form-control" placeholder="Enter skill (e.g., JavaScript)">
+
+    <label>Minimum Experience (Years):</label>
+    <input type="number" id="expFilter" class="form-control" placeholder="Enter experience">
+
+    <label>Location:</label>
+    <input type="text" id="locFilter" class="form-control" placeholder="Enter location">
+
+    <button class="btn btn-primary mt-3" onclick="shortlistResumes()">Shortlist</button>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Skills</th>
+                <th>Experience</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody id="resumeTable"></tbody>
+    </table>
+
+    <script>
+        const resumes = [
+            { "name": "Alice", "skills": ["JavaScript", "React"], "experience": 3, "location": "New York" },
+            { "name": "Bob", "skills": ["Python", "Django"], "experience": 5, "location": "California" },
+            { "name": "Charlie", "skills": ["JavaScript", "Vue"], "experience": 2, "location": "Texas" }
+        ];
+
+        function shortlistResumes() {
+            let skill = document.getElementById("skillFilter").value.toLowerCase();
+            let minExp = parseInt(document.getElementById("expFilter").value) || 0;
+            let location = document.getElementById("locFilter").value.toLowerCase();
+            let table = document.getElementById("resumeTable");
+            table.innerHTML = "";
+
+            let filtered = resumes.filter(resume =>
+                (skill === "" || resume.skills.some(s => s.toLowerCase().includes(skill))) &&
+                (resume.experience >= minExp) &&
+                (location === "" || resume.location.toLowerCase().includes(location))
+            );
+
+            filtered.forEach(resume => {
+                let row = `<tr>
+                    <td>${resume.name}</td>
+                    <td>${resume.skills.join(", ")}</td>
+                    <td>${resume.experience}</td>
+                    <td>${resume.location}</td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>

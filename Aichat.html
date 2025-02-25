@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #chat { width: 300px; margin: auto; }
+        input, button { margin-top: 10px; width: 100%; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h2>AI Chatbot</h2>
+    <div id="chat">
+        <input type="text" id="userInput" placeholder="Type a message..." />
+        <button onclick="getResponse()">Send</button>
+        <p id="botResponse"></p>
+    </div>
+
+    <script>
+        const responses = {
+            "hello": "Hi there! How can I help you?",
+            "how are you": "I'm just a bot, but I'm doing great!",
+            "bye": "Goodbye! Have a nice day!",
+            "default": "Sorry, I don't understand."
+        };
+
+        function getResponse() {
+            let input = document.getElementById("userInput").value.toLowerCase();
+            document.getElementById("botResponse").innerText = responses[input] || responses["default"];
+        }
+    </script>
+</body>
+</html>

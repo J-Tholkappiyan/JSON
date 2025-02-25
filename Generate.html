@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with JSON Output</title>
+    <style>
+        .conn {
+            border: 2px solid gray;
+            width: fit-content;
+            padding: 15px;
+            margin-left: 33%;
+            margin-top: 10%;
+            box-shadow: 2px 0 8px 0 black;
+        }
+        div {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: white;
+            font-size: 15pt;
+        }
+        input {
+            font-size: 14pt;
+        }
+
+        button {
+            font-size: 13pt;
+            cursor: pointer;
+        }
+        input[type=date]:hover {
+            border: 2px solid #808080dc;
+        }
+        #submitbtn {
+            border: 2px solid blue;
+        }
+        #submitbtn:hover {
+            background-color: blue;
+            color: white;
+        }
+        #jsonOutput {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #f4f4f4;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <script>
+        // Display current date and time
+        document.getElementById("demo").innerHTML = new Date();
+
+        function aa() {
+            document.getElementById("ssa").innerText = document.getElementById("nametxt").value;
+        }
+
+        function bb() {
+            document.getElementById("ssb").innerText = document.getElementById("lnametxt").value;
+        }
+
+        function dd() {
+            document.getElementById("dd").innerText = document.getElementById("date").value;
+        }
+
+        function generateJSON() {
+            // Get values from inputs
+            let name = document.getElementById("nametxt").value;
+            let designation = document.getElementById("lnametxt").value;
+            let date = document.getElementById("date").value;
+
+            // Create JSON object
+            let formData = {
+                "Name": name,
+                "Designation": designation,
+                "Date": date
+            };
+
+            // Convert JSON object to string
+            let jsonString = JSON.stringify(formData, null, 4);
+
+            // Display JSON output
+            document.getElementById("jsonOutput").innerText = jsonString;
+        }
+    </script>
+
+    <div class="conn">
+        <form onsubmit="event.preventDefault(); generateJSON();">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
+            <button type="button" onclick="dd()">OK</button>
+            <div id="dd"></div>
+
+            <label for="Name">Name:</label>
+            <input type="text" id="nametxt" name="Name" placeholder="e.g., John">
+            <button type="button" onclick="aa()">OK</button>
+            <div id="ssa"></div>
+
+            <label for="Lname">Designation:</label>
+            <input type="text" id="lnametxt" name="Lname" placeholder="e.g., HR/Manager">
+            <button type="button" onclick="bb()">OK</button>
+            <div id="ssb"></div>    
+
+            <button type="submit" id="submitbtn">Generate JSON</button>
+        </form>
+
+        <h3>Generated JSON:</h3>
+        <pre id="jsonOutput"></pre>
+    </div>
+</body>
+</html>

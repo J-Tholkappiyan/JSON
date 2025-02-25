@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <h2>Weather Forecast</h2>
+    <div id="weather"></div>
+
+    <script>
+        let weatherData = { "city": "New York", "temperature": "22°C", "condition": "Sunny" };
+
+        let weatherDiv = document.getElementById("weather");
+        weatherDiv.innerHTML = `<p>City: ${weatherData.city}</p><p>Temperature: ${weatherData.temperature}</p><p>Condition: ${weatherData.condition}</p>`;
+    </script>
+</body>
+</html>
